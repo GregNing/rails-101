@@ -8,6 +8,12 @@ Rails.application.routes.draw do
     end
     resources :posts
   end
+
+  namespace :account do
+    resources :groups
+    resources :posts
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
