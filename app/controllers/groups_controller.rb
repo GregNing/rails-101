@@ -15,7 +15,7 @@ class GroupsController < ApplicationController
   end
 
   def create
-    @group = Group.new(group_params)
+    @group = current_user.groups.build(group_params)
     if @group.save
       redirect_to groups_path
     else
@@ -46,6 +46,6 @@ class GroupsController < ApplicationController
   end
 
   def find_group
-    @group = Group.find(params[:id])
+    @group = current_user.groups.find(params[:id])
   end
 end
