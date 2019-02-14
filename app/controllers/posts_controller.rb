@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :login_required, expect: %i[index show]
   before_action :find_post, only: %i[edit update destroy]
   before_action :find_group
 

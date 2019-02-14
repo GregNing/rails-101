@@ -1,4 +1,5 @@
 class GroupsController < ApplicationController
+  before_action :login_required, expect: %i[index show]
   before_action :find_group, only: %i[edit show update destroy]
 
   def index
