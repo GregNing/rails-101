@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   before_action :login_required, expect: %i[index show]
   before_action :find_post, only: %i[edit update destroy]
   before_action :find_group
+  before_action :member_required, only: %i[new create]
 
   def new
     @post = @group.posts.build
@@ -45,6 +46,13 @@ class PostsController < ApplicationController
   end
 
   def find_group
-    @group = current_user.groups.find(params[:group_id])
+    @group = Group.find(params[:group_id])
+  end
+
+  def member_required
+    unless current_user.is_member_of?(@group)
+      flash[:warning] = 'You are not member of this group!'
+      redirect_to group_path(@group)
+    end
   end
 end

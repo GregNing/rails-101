@@ -1,8 +1,13 @@
 <div class="container">
   <div class="row">
-    <% if current_user && @group.editable_by?(current_user) %>
-      <%= link_to('Edit Group Info', edit_group_path(@group), class: "btn btn-mini") %>
-      <%= link_to('New Post', new_group_post_path(@group), class: "btn btn-mini btn-primary pull-right") %>
+    <% if current_user %>
+      <%= link_to('Edit Group Info', edit_group_path(@group), class: "btn btn-mini") if @group.editable_by?(current_user) %>
+      <% if current_user.is_member_of?(@group) %>
+        <%= link_to("New Post", new_group_post_path(@group), class: "btn btn-sm btn-primary") %>
+        <%= link_to("Quit Group", quit_group_path(@group), method: :post, class: "btn btn-sm") %>
+      <% else %>
+        <%= link_to("Join Group", join_group_path(@group), method: :post, class: "btn btn-sm") %>
+      <% end %>
     <% end %>
     <h3><%= @group.title %></h3>
     <p><%= @group.description %></p>
