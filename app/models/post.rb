@@ -4,7 +4,7 @@ class Post < ActiveRecord::Base
 
   validates_presence_of :content
 
-  scope :desc, -> { order('updated_at DESC') }
+  scope :recent, -> { order('updated_at DESC') }
 
   def editable_by?(user)
     user && user == author
