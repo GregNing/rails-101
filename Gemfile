@@ -29,7 +29,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bootstrap-sass', '~> 3.3.3'
 gem 'simple_form'
 gem 'devise'
-gem 'mysql2', '~> 0.3.18'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -47,5 +46,11 @@ group :development do
   gem 'sqlite3', '1.3.13'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem "capistrano",  "~> 3.1", require: false
+  gem "capistrano-rails", "~> 1.1", require: false
+  gem "capistrano-rbenv", "~> 2.0", require: false
 end
 
+group :production do
+  gem 'mysql2', '~> 0.4.0'
+end
