@@ -1,0 +1,12 @@
+<div class="panel panel-default">
+  <p class="panel-heading">
+    #
+    <%= message.id %>
+    <%= message.user_identity %>
+    於
+    <%= render_model_created_at(message) %>
+  </p>
+  <p class="panel-body">
+    <%= message.content %>
+  </p>
+</div>
