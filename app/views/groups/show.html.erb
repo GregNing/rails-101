@@ -13,17 +13,19 @@
     <p><%= @group.description %></p>
   </div>
   <div class="row">
-    <div class="col-sm-12">
-      <% @posts.each do |post| %>
+    <% @posts.each do |post| %>
+      <div class="col-sm-12">
         <div class="col-sm-2"><%= post.author.name %></div>
-        <div class="col-sm-6"><%= render_post_content(post) %></div>
-        <div class="col-sm-4">
-          <% if current_user && post.editable_by?(current_user) %>
+        <div class="<%= current_user && post.editable_by?(current_user) ? 'col-sm-6' : 'col-sm-10' %>">
+          <%= link_to(render_model_content(post), group_post_path(@group, post)) %>
+        </div>
+        <% if current_user && post.editable_by?(current_user) %>
+          <div class="col-sm-4">
             <%= link_to('Edit', edit_group_post_path(post.group, post), class: "btn btn-mini")%>
             <%= link_to('delete', group_post_path(post.group, post), class: "btn btn-default btn-sm", method: :delete, data: { confirm: "Are you sure?" }) %>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </div>
