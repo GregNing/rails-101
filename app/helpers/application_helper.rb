@@ -1,5 +1,9 @@
 module ApplicationHelper
-  def render_post_content(post)
-    truncate(simple_format(post.content), lenth: 100)
+  def render_model_created_at(model)
+    model.created_at.strftime('%F %H:%M')
+  end
+
+  def render_model_content(model)
+    truncate(simple_format(model.content), lenth: 100)
   end
 end
