@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190214065520) do
+ActiveRecord::Schema.define(version: 20190220080019) do
 
   create_table "group_users", force: :cascade do |t|
     t.integer  "group_id"
@@ -28,6 +28,17 @@ ActiveRecord::Schema.define(version: 20190214065520) do
     t.integer  "user_id"
     t.integer  "posts_count", default: 0
   end
+
+  create_table "messages", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "user_id"
+    t.integer  "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "messages", ["post_id"], name: "index_messages_on_post_id"
+  add_index "messages", ["user_id"], name: "index_messages_on_user_id"
 
   create_table "posts", force: :cascade do |t|
     t.text     "content"
