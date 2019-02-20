@@ -1,7 +1,7 @@
 <div class="container">
   <div class="col-md-12">
     <div class="group">
-      <%= link_to("New Group", new_group_path, class: "btn btn-sm btn-primary pull-right") %>
+      <%= link_to("New Group", new_group_path, class: "btn btn-sm btn-primary pull-right") if current_user %>
     </div>
   </div>
   <div class="row">
