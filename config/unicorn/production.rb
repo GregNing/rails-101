@@ -12,12 +12,12 @@ GC.respond_to?(:copy_on_write_friendly=) and
 
 check_client_connection false
 
-before_fork do
+before_fork do |server, worker|
   defined?(ActiveRecord::Base) &&
     ActiveRecord::Base.connection.disconnect!
 end
 
-after_fork do
+after_fork do |server, worker|
   defined?(ActiveRecord::Base) &&
     ActiveRecord::Base.establish_connection
 end

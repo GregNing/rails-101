@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
-  before_action :login_required, expect: %i[index show]
   before_action :find_post, only: %i[edit update destroy]
   before_action :find_group
+  before_action :authenticate_user!, except: [:show]
   before_action :member_required, only: %i[new create]
 
   def new
@@ -9,6 +9,12 @@ class PostsController < ApplicationController
   end
 
   def edit
+  end
+
+  def show
+    @post = @group.posts.includes(:messages).find(params[:id])
+    @messages = @post.messages
+    @message = Message.new
   end
 
   def update

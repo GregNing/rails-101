@@ -33,6 +33,13 @@ namespace :dev do
           puts "Post content: #{post.content}"
           post.created_at = 2.hours.ago..Time.now
           posts_count = 1
+
+          Message.populate(1..2) do |message|
+            message.user_id = user.id
+            message.post_id = post.id
+            message.content = Faker::WorldOfWarcraft.quote
+            post.created_at = 1.hours.ago..Time.now
+          end
         end
       end
     end

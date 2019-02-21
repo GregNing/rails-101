@@ -38,6 +38,7 @@ group :development, :test do
   gem 'byebug'
   gem 'faker'
   gem 'populator'
+  gem 'pry'
 end
 
 group :development do
